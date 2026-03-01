@@ -2,7 +2,7 @@
 
 ## Introduction
 
-
+This repository contains the official implementation of Team 3DIMLand's submission for the MICCAI 2024 3DTeethLand Challenge (https://www.synapse.org/Synapse:syn57400900/wiki/627259). 
 ## Usage (Ubuntu & NVIDIA GPU)
 
 ### Requirements
