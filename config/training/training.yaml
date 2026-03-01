@@ -1,0 +1,59 @@
+run_name: "PTv3Marker-Training"
+
+debug: False
+
+debug_visualisation_mode: "teeth_landmarks"
+
+#lr: 0.003981071705534969 # was found using lr_finder
+lr: 0.001
+
+num_workers: 16
+
+persistent_workers: True
+
+batch_size: 2
+
+max_steps: 100010
+
+early_stopping: False
+early_stopping_patience: 10  # epochs
+
+learning_rate_finder: False # Tries to find an optimal lr at the beginning of training. Result overrides 'lr' attribute.
+
+device: "cuda"
+
+precision: 32-true
+
+log_every_n_steps: 100
+val_check_interval: 10000
+checkpoint_every_n_train_steps: 10000
+
+fast_dev_run_num_batches: null
+
+sampled_points_num: 65536
+
+encoder:
+  model_name: 'ptv3_small'
+  input_channels: 3
+  output_channels: 32
+  patch_size: 1024
+
+decoder:  # decoder.input_channels = encoder.output_channels
+  model_name: 'mlp_small'  # mlp_small/mlp_medium/mlp_large: 1/3/5 hidden layers
+  output_channels: 6
+  hidden_channels: 512
+
+nms_iterations: 8
+nms_threshold: 0.2
+
+dataset:
+  offline_morphed_meshes_count: 2  # for every input mesh we will have N morphed meshes (in challenge, N = 2)
+  training_slice_start: 20
+  training_slice_end: null
+  validation_slice_start: 0
+  validation_slice_end: 20
+
+logging:
+  validation_log_html_ids: ['013TXGFK_upper', '0140W3ND_lower', '0140YFGV_lower', '014JUMCF_upper']
+  log_test_cases_every_n_steps: 1000001
+  test_case_ids: ['013NXP1H_lower', '01FPY2PZ_lower', 'R544MS3L_upper', 'YCJO4386_lower', '015SW0RN_upper', '01FPY2PZ_upper', 'THGBYHX3_upper', '019ZKUHV_lower', '6TZ254SP_lower', 'W6T6G0B6_upper']

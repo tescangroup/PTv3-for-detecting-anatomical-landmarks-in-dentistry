@@ -1,0 +1,7 @@
+default_root_dir: "data/"
+
+dataset_json_path: "data/3DTeethLand2024.json"
+preprocessed_data_path: "data/preprocessed_data/"
+
+pretrained_model_path: null
+#pretrained_model_path: "T:/T3D/TrainingDatasets/3DTeethLand//checkpoints/Jul23_19-54-09_t3dpc-glados/TeethLandLogger/0.1/checkpoints/epoch=29-step=900.ckpt"

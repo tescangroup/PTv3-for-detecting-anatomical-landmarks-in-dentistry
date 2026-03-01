@@ -1,0 +1,67 @@
+[project]
+name = "3DTeethLand-MICCAI24"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "Tibor Kubik", email = "tibor.kubik@tescan.com"},
+]
+dependencies = [
+    "lightning>=2.3.3",
+    "torch==2.1.*",
+    "torchvision==0.16.0",
+    "torchaudio==2.1.0",
+    "trimesh>=4.4.3",
+    "numpy==1.*",
+    "hydra-core>=1.3.2",
+    "clearml>=1.16.2",
+    "pyvista>=0.44.1",
+    "torch-geometric>=2.5.3",
+    "cython>=3.0.10",
+    "gdist>=2.1.0",
+    "pyglet<2.0.0",
+    "scipy>=1.14.0",
+    "vedo>=2024.5.2",
+    "tqdm>=4.66.4",
+    "pymeshlab>=2023.12.post1",
+    "fast-tsne>=0.0.0.0.1",
+    "pandas>=2.2.2",
+    "scanpy>=1.10.2",
+    "umap-learn>=0.5.6",
+    "clearml>=1.16.2",
+    "lightning>=2.3.3",
+    "pyvista>=0.44.1",
+    "trame>=3.6.3",
+    "trame-vuetify>=2.6.2",
+    "trame-vtk>=2.8.9",
+    "addict>=2.4.0",
+    "timm>=1.0.7",
+    "omegaconf>=2.3.0",
+    "hydra-core>=1.3.2",
+    "nest-asyncio>=1.6.0",
+    "packaging>=24.1",
+    "ninja>=1.11.1.1",
+    #"flash-attn>=2.6.1",
+    "setuptools>=71.1.0",
+    "pip>=24.2",
+]
+requires-python = ">=3.10"
+readme = "README.md"
+license = {text = "MIT"}
+
+[tool.pdm]
+distribution = false
+
+[[tool.pdm.source]]
+url = "https://download.pytorch.org/whl/cu118"
+verify_ssl = true
+name = "torch"
+
+[tool.pdm.scripts]
+post_install = {composite = [
+    "python -m pip install pyg_lib torch_scatter torch_sparse torch_cluster torch_spline_conv -f https://data.pyg.org/whl/torch-2.1.0+cu118.html",
+    "python -m pip install spconv-cu118",
+    "python -m pip install flash-attn --no-build-isolation",
+    "git clone https://github.com/mathLab/PyGeM",
+    "cd PyGeM && python -m pip install -e .",
+]}
+
